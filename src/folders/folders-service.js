@@ -6,7 +6,7 @@ const FoldersService = {
         return knex.select('*').from('folders').where({ id })
     },
     insertFolder(knex, folder) {
-        return knex.insert(note).into('folders').returning('*')
+        return knex.insert(folder).into('folders').returning('*')
             .then(rows => {
                 return rows[0]
             })
