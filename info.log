@@ -20,3 +20,11 @@
 {"message":"Cannot read property 'select' of undefined","level":"error"}
 {"message":"Cannot read property 'insert' of undefined","level":"error"}
 {"message":"folder with id 1 created","level":"info"}
+{"message":"insert into \"notes\" (\"author\", \"content\", \"folder_id\", \"title\") values (DEFAULT, $1, $2, $3) returning * - column \"author\" of relation \"notes\" does not exist","level":"error"}
+{"message":"insert into \"notes\" (\"content\", \"folder_id\", \"title\") values ($1, $2, $3) returning * - invalid input syntax for type integer: \"\"","level":"error"}
+{"message":"folder with id 2 created","level":"info"}
+{"message":"note with id 1 created","level":"info"}
+{"message":"insert into \"notes\" (\"content\", \"folder_id\", \"title\") values ($1, $2, $3) returning * - invalid input syntax for type integer: \"\"","level":"error"}
+{"message":"note with id 2 created","level":"info"}
+{"message":"folder with id 3 created","level":"info"}
+{"message":"note with id 3 created","level":"info"}

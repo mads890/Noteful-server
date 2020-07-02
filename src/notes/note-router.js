@@ -10,7 +10,6 @@ const serializeNote = note => ({
     id: note.id,
     title: xss(note.title),
     content: xss(note.content),
-    author: note.author,
     modified: note.modified,
     folder_id: note.folder_id
 })
@@ -25,7 +24,7 @@ notesRouter
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const { title, content, author, folder_id } = req.body
+        const { title, content, folder_id } = req.body
         const newNote = { title, content, folder_id }
         for(const [key, value] of Object.entries(newNote)) {
             if (value == null) {
@@ -34,7 +33,6 @@ notesRouter
                 })
             }
         }
-        newNote.author = author
         NotesService.insertNote(req.app.get('db'), newNote)
             .then(note => {
                 logger.info(`note with id ${note.id} created`)
@@ -71,8 +69,8 @@ notesRouter
             .catch(next)
     })
     .patch(jsonParser, (req, res, next) => {
-        const { title, content, author, folder_id } = req.body
-        const updatedNote = { title, content, author, folder_id }
+        const { title, content, folder_id } = req.body
+        const updatedNote = { title, content, folder_id }
 
         const numValues = Object.values(updatedNote).filter(Boolean).length
         if(numValues === 0) {
