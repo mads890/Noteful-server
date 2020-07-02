@@ -1,0 +1,22 @@
+{"message":"Unauthorized request to path: /","level":"error"}
+{"message":"Unauthorized request to path: /favicon.ico","level":"error"}
+{"message":"Unauthorized request to path: /api/folders","level":"error"}
+{"message":"Unauthorized request to path: /api/folders","level":"error"}
+{"message":"Unauthorized request to path: /api/folders","level":"error"}
+{"message":"Unauthorized request to path: /api/notes","level":"error"}
+{"message":"Unauthorized request to path: /api/folders","level":"error"}
+{"message":"name is a required field","level":"error"}
+{"message":"Unauthorized request to path: /api/folders","level":"error"}
+{"message":"Unauthorized request to path: /api/notes","level":"error"}
+{"message":"Unauthorized request to path: /api/folders","level":"error"}
+{"message":"name is a required field","level":"error"}
+{"message":"name is not defined","level":"error"}
+{"message":"Cannot read property 'insert' of undefined","level":"error"}
+{"message":"Cannot read property 'insert' of undefined","level":"error"}
+{"message":"Cannot read property 'select' of undefined","level":"error"}
+{"message":"Cannot read property 'select' of undefined","level":"error"}
+{"message":"Cannot read property 'insert' of undefined","level":"error"}
+{"message":"Cannot read property 'insert' of undefined","level":"error"}
+{"message":"Cannot read property 'select' of undefined","level":"error"}
+{"message":"Cannot read property 'insert' of undefined","level":"error"}
+{"message":"folder with id 1 created","level":"info"}

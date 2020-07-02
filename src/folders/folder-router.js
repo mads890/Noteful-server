@@ -8,7 +8,7 @@ const jsonParser = express.json()
 
 const serializeFolder = folder => ({
     id: folder.id,
-    title: xss(folder.name)
+    title: xss(folder.title)
 })
 
 foldersRouter
@@ -21,12 +21,13 @@ foldersRouter
             .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const { name } = req.body
-        const newFolder = { name }
-        if (newFolder.name == null) {
-            logger.error(`name is a required field`)
+        const { title } = req.body
+        const newFolder = { title }
+        console.log(newFolder)
+        if (newFolder.title == null) {
+            logger.error(`title is a required field`)
             return res.status(400).json({
-                error: { message: `name missing from request body`}
+                error: { message: `title missing from request body`}
             })
         }
         FoldersService.insertFolder(req.app.get('db'), newFolder)
@@ -67,9 +68,9 @@ foldersRouter
             .catch(next)
     })
     .patch(jsonParser, (req, res, next) => {
-        const { name } = req.body
-        const updatedFolder = { name }
-        if (updatedFolder.name == null) {
+        const { title } = req.body
+        const updatedFolder = { title }
+        if (updatedFolder.title == null) {
             logger.error(`must send field to update`)
             return res.status(400).json({
                 error: { message: `send a field to update`}
