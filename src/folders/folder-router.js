@@ -41,7 +41,7 @@ foldersRouter
 foldersRouter
     .route('/:folder_id')
     .all((req, res, next) => {
-        const id = req.params.folder_id
+        const id = parseInt(req.params.folder_id)
         FoldersService.getFolderById(req.app.get('db'), id)
             .then(folder => {
                 if (!folder) {
@@ -59,7 +59,7 @@ foldersRouter
         return res.json(serializeFolder(res.folder))
     })
     .delete((req, res, next) => {
-        const id = req.params.folder_id
+        const id = parseInt(req.params.folder_id)
         FoldersService.deleteFolder(req.app.get('db'), id)
             .then(data => {
                 logger.info(`folder with id ${id} deleted`)
@@ -70,13 +70,13 @@ foldersRouter
     .patch(jsonParser, (req, res, next) => {
         const { title } = req.body
         const updatedFolder = { title }
-        if (updatedFolder.title == null) {
+        if (updatedFolder.title === null) {
             logger.error(`must send field to update`)
             return res.status(400).json({
                 error: { message: `send a field to update`}
             })
         }
-        FoldersService.updateFolder(req.app.get('db'), req.params.folder_id, updatedFolder)
+        FoldersService.updateFolder(req.app.get('db'), parseInt(req.params.folder_id), updatedFolder)
             .then(data => {
                 logger.info(`folder with id ${req.params.folder_id} updated`)
                 return res.status(204).end()

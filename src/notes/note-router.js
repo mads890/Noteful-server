@@ -44,7 +44,7 @@ notesRouter
 notesRouter
     .route('/:note_id')
     .all((req, res, next) => {
-        NotesService.getNoteById(req.app.get('db'), req.params.note_id)
+        NotesService.getNoteById(req.app.get('db'), parseInt(req.params.note_id))
             .then(note => {
                 if(!note) {
                     logger.error(`note with id ${req.params.note_id} not found`)
@@ -61,7 +61,7 @@ notesRouter
         return res.json(serializeNote(res.note))
     })
     .delete((req, res, next) => {
-        NotesService.deleteNote(req.app.get('db'), req.params.note_id)
+        NotesService.deleteNote(req.app.get('db'), parseInt(req.params.note_id))
             .then(data => {
                 logger.info(`note with id ${req.params.note_id} deleted`)
                 res.status(204).end()
@@ -70,7 +70,8 @@ notesRouter
     })
     .patch(jsonParser, (req, res, next) => {
         const { title, content, folder_id } = req.body
-        const updatedNote = { title, content, folder_id }
+        const folder_idNum = parseInt(folder_id)
+        const updatedNote = { title, content, folder_id: folder_idNum }
 
         const numValues = Object.values(updatedNote).filter(Boolean).length
         if(numValues === 0) {
@@ -80,7 +81,7 @@ notesRouter
             })
         }
 
-        NotesService.updateNote(req.app.get('db'), req.params.note_id, updatedNote)
+        NotesService.updateNote(req.app.get('db'), parseInt(req.params.note_id), updatedNote)
             .then(data => {
                 res.status(204).end()
             })
